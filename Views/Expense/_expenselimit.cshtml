@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Expensetracker.Models.Expense_limit>
+<link href="~/Content/StyleSheet2.css" rel="stylesheet" />
+
+
+<div class="oneline">
+    <h2 class="heading">Expense Limit : </h2>
+    <div class="box">
+        @foreach (var item in Model)
+        {
+            <b>Total Expense</b>
+           <p> @item.Total_expense</p>
+            break;
+        }
+    </div>
+    <div class="box">
+        @foreach (var item in Model)
+        {
+            <b>Total Expense limit</b>
+           <p>@item.Total_expense_limit</p>
+            break;
+        }
+    </div>
+    <div class="box">
+        <b>Total Category Expense</b>
+        <p>25000</p>
+    </div>
+    <div class="box">
+        <b>Total Category Limit</b>
+        <p>50000</p>
+    </div>
+</div>
+
+
+@*<table id="expenselimit">
+    <thead>
+        <tr>
+            <th>Total Expense</th>
+            <th>Expense limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Total_expense</td>
+                <td>@item.Total_expense_limit</td>
+            </tr>
+        }
+    </tbody>
+</table>*@
+

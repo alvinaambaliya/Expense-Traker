@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Expensetracker.Models.Category>
+<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+
+<h2 class="heading"> Category list</h2>
+<div>
+<table id="categorytable" border="1" align="center" height="50%" width="75%">
+    <thead>
+        <tr>
+            <th>Category_name</th>
+            <th>Category_Expense_limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Category_name</td>
+                <td>@item.Category_expense_limit</td>
+            </tr>
+        }
+        <tr>
+            <td><b>Total Expense limit</b></td>
+            <td>
+                <b> @Model.Sum(i => i.Category_expense_limit)</b>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+</div>

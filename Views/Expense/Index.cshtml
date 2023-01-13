@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Expensetracker.Models.Expense>
+<link href="~/Content/StyleSheet3buttons.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="icon">
+    <img src="~/Content/image/expense-file.ico" height="58px" width="58px"/>
+    <h1 id="heading">EXPENSE TRACKER</h1>
+
+</div>
+
+@{
+    Html.RenderAction("Totalexpenselimit");
+}
+@Html.Raw(TempData["insertmsg"])
+@Html.Raw(TempData["Deleted"])
+@Html.Raw(TempData["updatmsg"])
+@using (Html.BeginForm())
+
+{
+    @Html.AntiForgeryToken()
+
+    @*<div id="div1">
+            @Html.Label("category name", htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>*@
+    <div class="col-lg-10" id="div1">
+        @*<input label="category name" value="category name"/>*@
+        <b>Category Name</b>
+        @Html.DropDownList("category_name", TempData["categoryddlist"] as SelectList, "--select--", new { @class = "form-control" })
+        @Html.ValidationMessage("Category_name", "", new { @class = "text-danger" })
+        <input type="submit" value="Search" class="btn btn-default" id="savebutton" />
+    </div>
+    @*<div id="div3">
+            <input type="submit" value="Search" class="btn btn-default" id="savebutton" />
+        </div>*@
+
+
+}
+
+<div>
+    <p>&emsp;</p>
+</div>
+<h2 class="heading">Expense List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("Delete", "Expense", new { Id = item.Id }))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete the record with Id=@item.Id');"
+                           style="background-color:red; color:white; font-size:16px; border:none; border-radius:8px; width:80px;" />
+
+                </td>
+            </tr>
+        }
+    }
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <b> Total Expense:</b>
+        </td>
+        <td>
+            <b> @Model.Sum(i => i.Amount)</b>
+        </td>
+    </tr>
+
+</table>
+@{
+    Html.RenderAction("Categories");
+}

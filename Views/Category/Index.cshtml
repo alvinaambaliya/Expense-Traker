@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Expensetracker.Models.Category>
+<link href="~/Content/StyleSheet3buttons.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Raw(TempData["insertmsg"])
+@Html.Raw(TempData["Deleted"])
+@Html.Raw(TempData["msg"])
+
+<h2 class="heading">Category List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category_expense_limit)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("Delete", "Category", new { Category_name = item.Category_name }))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category_expense_limit)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { Category_name = item.Category_name }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.Category_name }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Category_name })*@
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete the record with id=@item.Category_name');" 
+                           style="background-color:red; color:white; font-size:16px; border:none; border-radius:8px; width:80px;"/>
+                </td>
+            </tr>
+        }
+    }
+<tr>
+    <td>
+        <b> Total Expense limit:</b>
+    </td>
+    <td>
+        <b> @Model.Sum(i => i.Category_expense_limit)</b>
+    </td>
+</tr>
+
+</table>

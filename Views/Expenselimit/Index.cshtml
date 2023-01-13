@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Expensetracker.Models.Expense_limit>
+<link href="~/Content/StyleSheet3buttons.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Raw(TempData["insertmsg"])
+@Html.Raw(TempData["updatemsg"])
+<h2 class="heading">Expense Limit</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_expense)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_expense_limit)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("Delete", "Expenselimit", new { Id = item.e_id }))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total_expense)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total_expense_limit)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.e_id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.e_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.e_id })*@
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete the record with id=@item.e_id');"
+                           style="background-color:red; color:white; font-size:16px; border:none; border-radius:8px; width:80px;"/>
+
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+@foreach (var i in Model)
+{
+    if(i.Total_expense > i.Total_expense_limit)
+    {
+        <h3><script>alert('total expense is greater then total limit, Please...edit your data.')</script></h3>
+    }
+
+}
