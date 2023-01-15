@@ -1,0 +1,41 @@
+﻿
+#categorytable {
+    position: absolute;
+    height: 200px;
+    width: 65%;
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    border-left: none;
+    border-right: none;
+    background-color: #fff;
+}
+
+    #categorytable thead tr th {
+        vertical-align: bottom;
+
+        border-bottom: 2px solid #ddd;
+        border-top: 2px solid #ddd;
+        padding: 10px;
+    }
+
+    #categorytable tbody {
+        border-top: 2px solid #ddd;
+    }
+
+        #categorytable tbody tr td {
+            padding: 10px;
+        }
+
+#expenselimit {
+    position: absolute;
+    height: 100px;
+    width: 65%;
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    border-left: none;
+    border-right: none;
+    background-color: #fff;
+}
+.heading {
+    color: #003060;
+}

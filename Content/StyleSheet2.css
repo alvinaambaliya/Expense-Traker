@@ -1,0 +1,24 @@
+﻿.box{
+    width:180px;
+    height:100px;
+    border:2px;
+    padding:20px;
+    margin:20px;
+    border-radius:4px;
+    box-shadow:2px 2px 2px 2px;
+}
+.oneline {
+    display: flex;
+}
+.box:hover {
+    color: #003060;
+    background-color: #BFD7ED;
+}
+#heading {
+    color: #003060;
+}
+.box p:hover {
+    font: 50px;
+    color: #003060;
+}
+

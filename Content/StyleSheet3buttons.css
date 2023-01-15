@@ -1,0 +1,28 @@
+﻿#savebutton {
+    background-color: #003060;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    width: 80px;
+    font: bold;
+}
+#savebutton:hover {
+    color: #003060;
+    background-color: #BFD7ED;
+}
+.heading {
+    color: #003060;
+}
+#div1{
+    width:50%;
+    display:inline-flex;
+    position:center;
+    justify-content:space-between;
+    
+}
+.icon{
+    display:flex;
+    
+}
+
